@@ -14,7 +14,8 @@
         "email": "string"
     },
     "Tag": {
-        "title": "string"
+        "title": "string",
+        "post": "Post"
     }
 }
 
