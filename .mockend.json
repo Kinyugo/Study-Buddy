@@ -1,0 +1,21 @@
+{
+    "Post": {
+        "id": "int", 
+        "user": "User", 
+        "title": "string",
+        "description": "string",
+        "createdAt": "date",
+        "tags": "Tag[]"
+    }, 
+    "User": {
+        "id": "int",
+        "firstName": "string",
+        "lastName": "string",
+        "email": "string"
+    },
+    "Tag": {
+        "title": "string"
+    }
+}
+
+
