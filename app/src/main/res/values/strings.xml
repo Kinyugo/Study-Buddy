@@ -4,4 +4,6 @@
     <string name="title_chats">Chats</string>
     <string name="profile_image_description">Profile Image</string>
     <string name="home_fab_description">Create a new post</string>
+    <string name="chats_fab_description">Create a new chat</string>
+    <string name="chat_count_placeholder">10</string>
 </resources>

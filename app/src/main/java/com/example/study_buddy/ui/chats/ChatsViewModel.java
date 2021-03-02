@@ -4,16 +4,32 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.example.study_buddy.model.Chat;
+import com.example.study_buddy.repository.ChatRepository;
+
 public class ChatsViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+    private ChatRepository chatRepository;
+    private MutableLiveData<Chat[]> mChats;
 
     public ChatsViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is chats fragment");
+        chatRepository = new ChatRepository();
     }
 
-    public LiveData<String> getText() {
-        return mText;
+    public LiveData<Chat[]> getChats() {
+        if (mChats == null) {
+            mChats = new MutableLiveData<>();
+            chatRepository.fetchChats(mChats);
+        }
+
+        return mChats;
+    }
+
+    public void refreshChats() {
+        if (mChats == null) {
+            mChats = new MutableLiveData<>();
+        }
+
+        chatRepository.fetchChats(mChats);
     }
 }

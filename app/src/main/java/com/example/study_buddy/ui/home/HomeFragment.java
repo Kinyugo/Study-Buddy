@@ -2,9 +2,7 @@ package com.example.study_buddy.ui.home;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +14,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
-import com.example.study_buddy.CreatePost;
+import com.example.study_buddy.CreatePostActivity;
 import com.example.study_buddy.R;
 import com.example.study_buddy.model.Post;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -32,31 +29,22 @@ public class HomeFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
-        Log.d("Home Fragment", "Starting home fragment");
-
         homeViewModel =
                 new ViewModelProvider(this).get(HomeViewModel.class);
 
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
         final ListView listView = root.findViewById(R.id.list_view_home);
-        homeViewModel.getPosts().observe(getViewLifecycleOwner(), new Observer<Post[]>() {
-            @Override
-            public void onChanged(@Nullable Post[] posts) {
-                PostArrayAdapter adapter = new PostArrayAdapter(getContext(), posts);
-                listView.setAdapter(adapter);
-                adapter.notifyDataSetChanged();
-            }
+        homeViewModel.getPosts().observe(getViewLifecycleOwner(), posts -> {
+            PostArrayAdapter adapter = new PostArrayAdapter(getContext(), posts);
+            listView.setAdapter(adapter);
+            adapter.notifyDataSetChanged();
         });
 
         final SwipeRefreshLayout refreshLayout = root.findViewById(R.id.refresh_layout_home);
-        refreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                homeViewModel.refreshPosts();
-                refreshLayout.setRefreshing(false);
-            }
+        refreshLayout.setOnRefreshListener(() -> {
+            homeViewModel.refreshPosts();
+            refreshLayout.setRefreshing(false);
         });
 
         // Add onclick listener for the fab
@@ -67,7 +55,7 @@ public class HomeFragment extends Fragment {
     }
 
     protected void createPost(View view) {
-        Intent intent = new Intent(getActivity(), CreatePost.class);
+        Intent intent = new Intent(getActivity(), CreatePostActivity.class);
         startActivity(intent);
     }
 

@@ -29,8 +29,8 @@ public class Post {
     public static Uri generateProfileImageUri(Post post) {
 
         return Uri.parse(ROBO_HASH_BASE_URL).buildUpon()
-                .appendPath(post.title)
-                .appendQueryParameter(QUERY_PARAM, "4")
+                .appendPath(post.getTitle())
+                .appendQueryParameter(QUERY_PARAM, "set4")
                 .build();
     }
 

@@ -1,5 +1,8 @@
 package com.example.study_buddy.utils;
 
+import android.util.Log;
+
+import com.example.study_buddy.model.Chat;
 import com.example.study_buddy.model.Post;
 import com.example.study_buddy.model.User;
 
@@ -27,6 +30,7 @@ public class JSONUtils {
             String createdAt = postJSON.getString("createdAt");
             JSONArray tagsJSON = postJSON.getJSONArray("tags");
             JSONObject userJSON = postJSON.getJSONObject("user");
+
 
             String tags[] = new String[tagsJSON.length()];
 
@@ -71,4 +75,57 @@ public class JSONUtils {
 
         return null;
     }
+
+
+    /**
+     * Takes a chat JSON object and parses it to create a Chat object.
+     *
+     * @param chatJSON JSON containing chat data.
+     * @return Chat object if successful null otherwise.
+     */
+    public static Chat parseChatJSON(JSONObject chatJSON) {
+        Chat chat = null;
+
+        try {
+            String id = chatJSON.getString("id");
+            String preview = chatJSON.getString("preview");
+            String updatedAt = chatJSON.getString("updatedAt");
+            JSONObject userJSON = chatJSON.getJSONObject("user");
+            Integer count = chatJSON.getInt("count");
+
+            User participant = new User(userJSON.getString("id"),
+                    userJSON.getString("firstName"),
+                    userJSON.getString("lastName"));
+
+            chat = new Chat(id, preview, updatedAt, participant, count);
+
+            Log.d("JSONUtils", "Successfully parsed chat");
+
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return chat;
+    }
+
+    public static Chat[] parseChatsFromString(String jsonString) {
+        try {
+            JSONArray chatsJSON = new JSONArray(jsonString);
+            Chat chats[] = new Chat[chatsJSON.length()];
+
+            for (int i = 0; i < chatsJSON.length(); i++) {
+                JSONObject postJSON = chatsJSON.getJSONObject(i);
+                chats[i] = JSONUtils.parseChatJSON(postJSON);
+            }
+
+            Log.d("JSONUtils", "Successfully parsed all chats");
+
+            return chats;
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 }

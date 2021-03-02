@@ -6,17 +6,44 @@
     android:layout_height="match_parent"
     tools:context=".ui.chats.ChatsFragment">
 
-    <TextView
-        android:id="@+id/text_notifications"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:textAlignment="center"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+   <FrameLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       app:layout_constraintTop_toTopOf="parent"
+       app:layout_constraintBottom_toBottomOf="parent"
+       app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintEnd_toEndOf="parent">
+
+       <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+           android:id="@+id/refresh_layout_chats"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent">
+
+           <ListView
+               android:id="@+id/list_view_chats"
+               android:layout_width="match_parent"
+               android:layout_height="match_parent"
+               android:divider="@null"
+               android:dividerHeight="0dp"
+               android:paddingBottom="@dimen/list_view_padding_bottom"
+               android:drawSelectorOnTop="true"
+               android:listSelector="@drawable/ripple_background" />
+
+       </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+       <com.google.android.material.floatingactionbutton.FloatingActionButton
+           android:id="@+id/fab_chats"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_gravity="end|bottom"
+           android:layout_marginBottom="@dimen/fab_margin_bottom"
+           android:layout_marginEnd="@dimen/fab_margin_horizontal"
+           android:contentDescription="@string/chats_fab_description"
+           app:rippleColor="@color/fab_ripple"
+           android:src="@drawable/ic_create_chat"
+           android:tint="@android:color/white"
+           app:tint="@null" />
+
+
+   </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,6 +27,10 @@ public class HomeViewModel extends ViewModel {
     }
 
     public void refreshPosts() {
+        if (mPosts == null) {
+            mPosts = new MutableLiveData<>();
+        }
+
         postRepository.fetchPosts(mPosts);
     }
 }

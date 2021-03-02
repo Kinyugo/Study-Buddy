@@ -27,7 +27,7 @@
             android:listSelector="@android:color/transparent"
             android:divider="@null"
             android:dividerHeight="0dp"
-            android:paddingBottom="@dimen/home_list_view_padding_bottom"/>
+            android:paddingBottom="@dimen/list_view_padding_bottom"/>
 
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
@@ -36,12 +36,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|bottom"
-            android:layout_marginHorizontal="@dimen/home_fab_margin_horizontal"
-            android:layout_marginBottom="@dimen/home_fab_margin_bottom"
+            android:layout_marginEnd="@dimen/fab_margin_horizontal"
+            android:layout_marginBottom="@dimen/fab_margin_bottom"
             android:contentDescription="@string/home_fab_description"
             android:src="@drawable/ic_baseline_create_post"
             android:tint="@android:color/white"
-            app:rippleColor="#E62196F3"
+            app:rippleColor="@color/fab_ripple"
             app:tint="@null" />
 
     </FrameLayout>
