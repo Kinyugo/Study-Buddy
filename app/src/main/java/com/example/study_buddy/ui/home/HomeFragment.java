@@ -1,6 +1,7 @@
 package com.example.study_buddy.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
 import android.util.Log;
@@ -19,8 +20,10 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
+import com.example.study_buddy.CreatePost;
 import com.example.study_buddy.R;
 import com.example.study_buddy.model.Post;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.squareup.picasso.Picasso;
 
 public class HomeFragment extends Fragment {
@@ -56,8 +59,18 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        // Add onclick listener for the fab
+        FloatingActionButton createPostFAB = root.findViewById(R.id.fab_home);
+        createPostFAB.setOnClickListener(this::createPost);
+
         return root;
     }
+
+    protected void createPost(View view) {
+        Intent intent = new Intent(getActivity(), CreatePost.class);
+        startActivity(intent);
+    }
+
 
     class PostArrayAdapter extends ArrayAdapter<Post> {
 
