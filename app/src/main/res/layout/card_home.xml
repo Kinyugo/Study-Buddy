@@ -9,8 +9,11 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        card_view:cardCornerRadius="4dp"
         android:layout_margin="@dimen/card_home_margin"
-        card_view:cardCornerRadius="4dp">
+        android:foreground="@drawable/ripple_background"
+        android:clickable="true"
+        android:focusable="true">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -34,17 +37,41 @@
                     android:background="@drawable/circular_profile_img"
                     android:contentDescription="@string/profile_image_description" />
 
-                <TextView
-                    android:id="@+id/card_home_username"
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/card_home_username_margin_left"
-                    android:fontFamily="sans-serif"
-                    android:text="@string/title_chats"
-                    android:textColor="@color/gray_900"
-                    android:textSize="30sp"
-                    android:textStyle="bold" />
+                    android:layout_marginStart="@dimen/card_home_username_margin_left">
+
+                    <TextView
+                        android:id="@+id/card_home_first_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/title_chats"
+                        android:textColor="@color/gray_900"
+                        android:textSize="20sp"/>
+
+                    <TextView
+                        android:id="@+id/card_home_last_name"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/card_home_common_margin"
+                        android:fontFamily="sans-serif"
+                        android:text="@string/title_chats"
+                        android:textColor="@color/gray_900"
+                        android:textSize="20sp"/>
+
+                </LinearLayout>
             </LinearLayout>
+
+            <TextView
+                android:id="@+id/card_home_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/card_home_common_margin"
+                android:text="@string/profile_image_description"
+                android:textSize="30sp"
+                android:textColor="@color/gray_900" />
 
             <View
                 android:layout_width="match_parent"
@@ -59,15 +86,34 @@
                 android:minHeight="@dimen/card_home_description_min_height"
                 android:text="@string/profile_image_description"
                 android:textColor="@color/gray_500"
-                android:textSize="24sp" />
+                android:textSize="18sp" />
 
-            <TextView
-                android:id="@+id/card_home_tags"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/title_chats"
-                android:textSize="16sp"
-                android:textColor="@color/purple_500" />
+                android:layout_gravity="center_vertical"
+                android:layout_marginHorizontal="@dimen/card_home_common_margin"
+                android:orientation="horizontal"
+                android:paddingHorizontal="@dimen/card_home_common_margin">
+
+                <TextView
+                    android:id="@+id/card_home_tags"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/title_chats"
+                    android:textSize="16sp"
+                    android:textColor="@color/purple_500" />
+
+                <TextView
+                    android:id="@+id/card_home_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="@string/title_chats"
+                    android:gravity="end" />
+
+            </LinearLayout>
 
         </LinearLayout>
 
